@@ -2,26 +2,27 @@
 
 namespace Jormin\DDoc\Controllers;
 
-use Illuminate\Routing\Controller;
 use Barryvdh\Snappy\Facades\SnappyPdf;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\View;
 
-class DDocController extends Controller
+class DDocController
 {
 
     /**
      * 读取数据库信息
+     * @var $continue
      */
-    private function initTablesData()
+    private function initTablesData($continue)
     {
         //获取数据库表名称列表
-        $tables = DB::select('SHOW TABLE STATUS ');
+        $continue = $continue ?? 'mysql';
+        $tables = DB::continue($continue)->select('SHOW TABLE STATUS ');
         foreach ($tables as $key => $table) {
             //获取改表的所有字段信息
-            $columns = DB::select("SHOW FULL FIELDS FROM `".$table->Name."`");
+            $columns = DB::continue($continue)->select("SHOW FULL FIELDS FROM `".$table->Name."`");
             $table->columns = $columns;
             $tables[$key] = $table;
         }
@@ -33,9 +34,9 @@ class DDocController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($continue)
     {
-        $tables = $this->initTablesData();
+        $tables = $this->initTablesData($continue);
         return view('ddoc::index',compact('tables'));
     }
 
@@ -44,12 +45,12 @@ class DDocController extends Controller
      *
      * @param $type
      */
-    public function export($type)
+    public function export($type, $continue)
     {
         if(!in_array($type,array('html','pdf','md'))){
             return null;
         }
-        $tables = $this->initTablesData();
+        $tables = $this->initTablesData($continue);
         $filename = config('app.name').'数据字典';
         switch($type){
             case 'html':

@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ config('app.name', '') }}数据字典</title>
-    <link rel="stylesheet" href="{{ asset('vendor/laravel-ddoc/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendor/laravel-ddoc/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendor/laravel-ddoc/css/ddoc.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendor/laravel-ddoc/css/animate.min.css') }}">
+    <link rel="stylesheet" href="/vendor/laravel-ddoc/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/laravel-ddoc/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/laravel-ddoc/css/ddoc.css">
+    <link rel="stylesheet" href="/vendor/laravel-ddoc/css/animate.min.css">
 </head>
 <body>
 <div id="wrapper">
@@ -107,8 +107,8 @@
     </footer>
 </div>
 
-<script src="{{ asset('vendor/laravel-ddoc/js/jquery.min.js') }}"></script>
-<script src="{{ asset('vendor/laravel-ddoc/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('vendor/laravel-ddoc/js/ddoc.js') }}"></script>
+<script src="/vendor/laravel-ddoc/js/jquery.min.js') }}"></script>
+<script src="/vendor/laravel-ddoc/js/bootstrap.min.js') }}"></script>
+<script src="/vendor/laravel-ddoc/js/ddoc.js') }}"></script>
 </body>
 </html>
